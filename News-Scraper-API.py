@@ -12,8 +12,8 @@ class getRequest(Resource):
     def get(self, searchTerm):
         processedData = self.getNews(searchTerm)
         return {
-            "Info": {"Search Term": searchTerm},
-            "Processed Data": processedData
+            "searchTerm": searchTerm,
+            "processedData": processedData
         }
     
     def getNews(self, searchTerm):
@@ -39,10 +39,10 @@ class getRequest(Resource):
         link = [a['href'] for a in soup.find_all('a', class_= lambda x: x and re.compile(r'^headline').match(x), href=True) if a.text]
 
         for i in range(0, len(link)):
-            case = {"[B-Headline]": headlineData[i], "[B-Link]": link[i]}
+            case = {"Headline": headlineData[i], "Link": link[i]}
             newsArray.append(case)
 
-        print(newsArray[0])
+
 
         return newsArray
     
@@ -61,10 +61,9 @@ class getRequest(Resource):
             link = [a['href'] for a in soup.find_all('a', class_= 'title', href=True) if a.text]
 
             for i in range(0, (len(headlineData) - 3)):
-                case = {"[I-Headline]": headlineData[i], "[I-Link]": "https://www.investing.com"+link[i]}
+                case = {"Headline": headlineData[i], "Link": "https://www.investing.com"+link[i]}
                 newsArray.append(case)
 
-            print(newsArray[0])
             return newsArray
 
 api.add_resource(getRequest, "/getNews/<string:searchTerm>")

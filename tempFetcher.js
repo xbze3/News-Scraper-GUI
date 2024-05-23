@@ -1,0 +1,5 @@
+data = fetch("http://127.0.0.1:5000/getNews/tsla")
+    .then(res => res.json())
+    .then(data => {for(let i = 0; i < data.processedData.length; i++)
+        console.log(`Headline: ${data.processedData[i].Headline}\nLink: ${data.processedData[i].Link}`)
+    })
