@@ -35,11 +35,12 @@ class getRequest(Resource):
         page = requests.get(URL, headers=headers)
         soup = BeautifulSoup(page.content, "html.parser")
 
+        img = [img['src'] for img in soup.find_all('img', class_=lambda x: x and re.search(r'thumbnail', x), src=True)]
         headlineData = [x.get_text() for x in soup.find_all('a', attrs={'class': lambda x: x and re.compile(r'^headline').match(x)})]
         link = [a['href'] for a in soup.find_all('a', class_= lambda x: x and re.compile(r'^headline').match(x), href=True) if a.text]
 
         for i in range(0, len(link)):
-            case = {"Headline": headlineData[i], "Link": link[i]}
+            case = {"Image": img[i], "Headline": headlineData[i], "Link": link[i]}
             newsArray.append(case)
 
 
@@ -57,11 +58,12 @@ class getRequest(Resource):
             page = requests.get(URL, headers=headers)
             soup = BeautifulSoup(page.content, "html.parser")
 
+            img = "https://th.bing.com/th/id/OIP.48FWT7d2HaEMDm06-PrJTAHaE2?rs=1&pid=ImgDetMain"
             headlineData = [x.get_text() for x in soup.find_all('a', attrs={'class': 'title'})]
             link = [a['href'] for a in soup.find_all('a', class_= 'title', href=True) if a.text]
 
             for i in range(0, (len(headlineData) - 3)):
-                case = {"Headline": headlineData[i], "Link": "https://www.investing.com"+link[i]}
+                case = {"Image": img, "Headline": headlineData[i], "Link": "https://www.investing.com"+link[i]}
                 newsArray.append(case)
 
             return newsArray
