@@ -43,30 +43,28 @@ class getRequest(Resource):
             case = {"Image": img[i], "Headline": headlineData[i], "Link": link[i]}
             newsArray.append(case)
 
-
-
         return newsArray
     
     def getInvesting(self, searchTerm):
 
-            newsArray = []
+        newsArray = []
 
-            userInput = searchTerm.replace(" ", "%20")
-            headers = {'User-Agent': 'Mozilla/5.0'}
+        userInput = searchTerm.replace(" ", "%20")
+        headers = {'User-Agent': 'Mozilla/5.0'}
 
-            URL = f"https://www.investing.com/search/?q={userInput}&tab=news"
-            page = requests.get(URL, headers=headers)
-            soup = BeautifulSoup(page.content, "html.parser")
+        URL = f"https://www.investing.com/search/?q={userInput}&tab=news"
+        page = requests.get(URL, headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
 
-            img = "https://th.bing.com/th/id/OIP.48FWT7d2HaEMDm06-PrJTAHaE2?rs=1&pid=ImgDetMain"
-            headlineData = [x.get_text() for x in soup.find_all('a', attrs={'class': 'title'})]
-            link = [a['href'] for a in soup.find_all('a', class_= 'title', href=True) if a.text]
+        img = "https://th.bing.com/th/id/OIP.48FWT7d2HaEMDm06-PrJTAHaE2?rs=1&pid=ImgDetMain"
+        headlineData = [x.get_text() for x in soup.find_all('a', attrs={'class': 'title'})]
+        link = [a['href'] for a in soup.find_all('a', class_= 'title', href=True) if a.text]
 
-            for i in range(0, (len(headlineData) - 3)):
-                case = {"Image": img, "Headline": headlineData[i], "Link": "https://www.investing.com"+link[i]}
-                newsArray.append(case)
+        for i in range(0, (len(headlineData) - 3)):
+            case = {"Image": img, "Headline": headlineData[i], "Link": "https://www.investing.com"+link[i]}
+            newsArray.append(case)
 
-            return newsArray
+        return newsArray
 
 api.add_resource(getRequest, "/getNews/<string:searchTerm>")
 
