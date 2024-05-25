@@ -1,10 +1,12 @@
 from flask import Flask
 from flask_restful import Api, Resource
+from flask_cors import CORS
 import requests
 import re
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 class getRequest(Resource):
@@ -17,20 +19,15 @@ class getRequest(Resource):
         }
     
     def getNews(self, searchTerm):
-
         bloomberg = self.getBloomberg(searchTerm)
         investing = self.getInvesting(searchTerm)
         news = bloomberg + investing
-
         return news
     
     def getBloomberg(self, searchTerm):
-
         newsArray = []
-
         userInput = searchTerm.replace(" ", "%20")
         headers = {'User-Agent': 'Mozilla/5.0'}
-
         URL = f"https://www.bloomberg.com/search?query={userInput}"
         page = requests.get(URL, headers=headers)
         soup = BeautifulSoup(page.content, "html.parser")
@@ -46,12 +43,9 @@ class getRequest(Resource):
         return newsArray
     
     def getInvesting(self, searchTerm):
-
         newsArray = []
-
         userInput = searchTerm.replace(" ", "%20")
         headers = {'User-Agent': 'Mozilla/5.0'}
-
         URL = f"https://www.investing.com/search/?q={userInput}&tab=news"
         page = requests.get(URL, headers=headers)
         soup = BeautifulSoup(page.content, "html.parser")
