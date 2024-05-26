@@ -9,6 +9,7 @@
     <div id="app">
 
         <nav-bar></nav-bar>
+        <card></card>
 
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -34,6 +35,21 @@
             </div>
             `
         })
+
+        app.component('card', {
+            template: `
+                <div id="card-div">
+                    <div id="card-img">
+                        <p>Image</p>    
+                    </div>   
+
+                    <div id="card-headline">
+                        <p>Headline</p>    
+                    </div>    
+                </div>
+            `
+        })
+
         app.mount('#app')
     </script>
 </body>

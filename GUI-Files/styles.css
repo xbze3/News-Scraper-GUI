@@ -49,3 +49,25 @@
     padding: 0px 5px 0px 5px;
     font-weight: bold;
 }
+
+#card-div {
+    background-color: beige;
+    display: inline-block;
+    margin: 10px 0px 0px 10px;
+}
+
+#card-img {
+}
+
+#card-img > p {
+    background-color: grey;
+    padding: 110px 100px;
+}
+
+#card-headline {
+}
+
+#card-headline > p {
+    background-color: rgb(164, 164, 248);
+    padding: 30px 20px;
+}
