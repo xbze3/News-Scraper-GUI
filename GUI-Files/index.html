@@ -18,6 +18,8 @@
         :head="data[index].Headline"
         ></card>
 
+        <!-- <loader></loader> -->
+
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
@@ -27,7 +29,8 @@
                     temp: 'Coming Soon',
                     imgData: 'Image',
                     headData: 'Headline',
-                    data: ''
+                    data: '',
+                    loading: false
                 }
             },
             methods: {
@@ -83,6 +86,13 @@
                 return {
                 }
             }
+        })
+
+        app.component('loader', {
+            template: `
+                <div id="loading-gif">
+                </div>
+            `
         })
 
         app.mount('#app')

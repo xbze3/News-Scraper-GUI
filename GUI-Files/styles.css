@@ -53,9 +53,8 @@
 
 #card-div {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border: 1px solid black;
     color: black;
-
+    font-family: "Montserrat", sans-serif;
 }
 
 #card-img > img {
@@ -63,23 +62,21 @@
     height: 300px;
 }
 
-#card-img > p {
-    width: 250px;
-    height: 300px;
-}
-
 #card-headline {
     width: 250px;
     height: 100px;
+    padding-bottom: 10px;
 }
 
 #card-headline > p {
-
+    margin: 10px 10px 0px 0px;
+    padding: 0px 0px 0px 10px;
+    font-size: ;
 }
 
 #card-link {
     text-decoration: none;
     color: white;
     float: left;
-    margin: 20px 0px 0px 35px;
+    margin: 10px 0px 0px 35px;
 }
