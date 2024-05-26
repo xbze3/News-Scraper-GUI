@@ -52,8 +52,8 @@
 
 #card-div {
     background-color: beige;
-    display: inline-block;
-    margin: 20px 0px 0px 4%;
+    margin: 20px 0px 0px 35px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 #card-img {
@@ -61,14 +61,14 @@
 
 #card-img > p {
     background-color: grey;
-    padding: 110px 100px;
+    width: 250px;
+    height: 300px;
 }
 
 #card-headline {
     background-color: rgb(164, 164, 248);
-    display: flex;
-    justify-content: center;
-    padding: 30px 20px;
+    width: 250px;
+    height: 100px;
 }
 
 #card-headline > p {
@@ -78,4 +78,5 @@
 #card-link {
     text-decoration: none;
     color: white;
+    float: left;
 }

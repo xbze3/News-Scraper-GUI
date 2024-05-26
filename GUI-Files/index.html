@@ -9,7 +9,11 @@
     <div id="app">
 
         <nav-bar @pass-term="getNews"></nav-bar>
-        <card :img="imgData" :head="headData"></card>
+        <card
+        v-for="(item, index) in data"
+        :img="imgData"
+        :head="data[index].Headline"
+        ></card>
 
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -19,12 +23,16 @@
                 return {
                     temp: 'Coming Soon',
                     imgData: 'Image',
-                    headData: 'Headline'
+                    headData: 'Headline',
+                    data: ''
                 }
             },
             methods: {
-                getNews(term) {
-                    console.log(`Search Term: ${term}`)
+                async getNews(term) {
+                    const response = await fetch(`http://127.0.0.1:5000/getNews/${term}`)
+                    const tempData = await response.json()
+                    this.data = tempData.processedData
+                    console.log(this.data[0].Headline)
                 }
             }
         })
