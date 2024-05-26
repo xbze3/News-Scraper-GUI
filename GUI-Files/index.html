@@ -8,8 +8,8 @@
 <body>
     <div id="app">
 
-        <nav-bar></nav-bar>
-        <card></card>
+        <nav-bar @pass-term="getNews"></nav-bar>
+        <card :img="imgData" :head="headData"></card>
 
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -17,7 +17,14 @@
         let app = Vue.createApp({
             data() {
                 return {
-                    temp: 'Coming Soon'
+                    temp: 'Coming Soon',
+                    imgData: 'Image',
+                    headData: 'Headline'
+                }
+            },
+            methods: {
+                getNews(term) {
+                    console.log(`Search Term: ${term}`)
                 }
             }
         })
@@ -28,26 +35,43 @@
                 <ul>
                     <li><a href="">News Scraper</a></li> 
                     <form>
-                        <li><input type="text" placeholder="Search Term"></li> 
-                        <button @click.prevent>Search</button>
+                        <li><input type="text" placeholder="Search Term" v-model="searchTerm"></li> 
+                        <button @click.prevent="passTerm">Search</button>
                     </form>
                 </ul>    
             </div>
-            `
+            `,
+            data() {
+                return {
+                    searchTerm: ''
+                }
+            },
+            methods: {
+                passTerm() {
+                    this.$emit('pass-term', this.searchTerm)
+                }
+            }
         })
 
         app.component('card', {
             template: `
-                <div id="card-div">
-                    <div id="card-img">
-                        <p>Image</p>    
-                    </div>   
+                <a href="#" id="card-link">
+                    <div id="card-div">
+                        <div id="card-img">
+                            <p>{{ img }}</p>    
+                        </div>   
 
-                    <div id="card-headline">
-                        <p>Headline</p>    
-                    </div>    
-                </div>
-            `
+                        <div id="card-headline">
+                            <p>{{ head }}</p>    
+                        </div>    
+                    </div>
+                </a>
+            `,
+            props: ['img', 'head'],
+            data() {
+                return {
+                }
+            }
         })
 
         app.mount('#app')
