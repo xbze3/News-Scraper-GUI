@@ -50,23 +50,25 @@
     font-weight: bold;
 }
 
+
 #card-div {
-    background-color: beige;
-    margin: 20px 0px 0px 35px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid black;
+    color: black;
+
 }
 
-#card-img {
+#card-img > img {
+    width: 250px;
+    height: 300px;
 }
 
 #card-img > p {
-    background-color: grey;
     width: 250px;
     height: 300px;
 }
 
 #card-headline {
-    background-color: rgb(164, 164, 248);
     width: 250px;
     height: 100px;
 }
@@ -79,4 +81,5 @@
     text-decoration: none;
     color: white;
     float: left;
+    margin: 20px 0px 0px 35px;
 }

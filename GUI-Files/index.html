@@ -12,7 +12,9 @@
         <nav-bar @pass-term="getNews"></nav-bar>
         <card
         v-for="(item, index) in data"
-        :img="imgData"
+        :key="index"
+        :img="data[index].Image"
+        :link="data[index].Link"
         :head="data[index].Headline"
         ></card>
 
@@ -64,10 +66,10 @@
 
         app.component('card', {
             template: `
-                <a href="#" id="card-link">
+                <a :href="link" id="card-link" target="_blank">
                     <div id="card-div">
                         <div id="card-img">
-                            <p>{{ img }}</p>    
+                            <img :src="img" alt="Image">    
                         </div>   
 
                         <div id="card-headline">
@@ -76,7 +78,7 @@
                     </div>
                 </a>
             `,
-            props: ['img', 'head'],
+            props: ['link', 'img', 'head'],
             data() {
                 return {
                 }
