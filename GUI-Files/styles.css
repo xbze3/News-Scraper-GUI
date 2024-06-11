@@ -50,6 +50,11 @@
     font-weight: bold;
 }
 
+#nav-div > ul > form > button:hover{
+    background-color: rgb(167, 167, 255);
+    transition: 0.2s ease;
+    cursor: pointer;
+}
 
 #card-div {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
